@@ -53,3 +53,31 @@ for i in range(1, num_clientes +1):
     })
 
 df_clientes = pd.DataFrame(clientes_data)
+
+vendedores_data = [
+    {"ID_Vendedor": 1042, "Nombre_Ingeniero":"Ing. Roberto Ventas", "Zona":"Norte"},
+    {"ID_Vendedor": 1035, "Nombre_Ingeniero":"Ing. Roberto Ventas", "Zona":"Norte"},
+    {"ID_Vendedor": 1089, "Nombre_Ingeniero":"Ing. Roberto Ventas", "Zona":"Norte"},
+    {"ID_Vendedor": 1010, "Nombre_Ingeniero":"Ing. Roberto Ventas", "Zona":"Norte"}
+]
+
+df_vendedores = pd.DataFrame(vendedores_data)
+
+# ---------- 4. Tabla de Hechos: Órdenes de producción (ventas) --------------
+num_ordenes = 800
+ordenes_data = []
+
+for _ in range(num_ordenes):
+    cliente = random.choice(clientes_data)
+    parte = random.choice(partes_data)
+    vendedor = random.choice(vendedores_data)
+
+    cantidad = random.choice([10, 50, 100, 200, 500])
+
+    fecha = faker.date_between(start_date='-1y', end_date='today')
+
+    ordenes_data.append({
+        "ID_Orden": faker.uuid4(),
+        "Fecha_Orden": fecha,
+        "ID_Cliente": cliente["ID_Cliente"]
+    })
